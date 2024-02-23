@@ -12,7 +12,7 @@ public record UserDTO(
         @NotEmpty(message = "Il cognome è obbligatorio")
         String surname,
         @NotEmpty(message = "L'età è obbligatoria")
-        LocalDate age,
+        String age,
         @NotEmpty(message = "L'email è obbligatoria")
         @Email(message = "L'email inserita non è valida")
         String email,

@@ -9,7 +9,6 @@ public record UserLoginDTO(
         @Email(message = "L'email inserita non è valida")
         String email,
         @NotEmpty(message = "La password è obbligatoria")
-        @Size(min = 8, message = "La password deve essere minimo di caratteri")
         String password
 ) {
 }

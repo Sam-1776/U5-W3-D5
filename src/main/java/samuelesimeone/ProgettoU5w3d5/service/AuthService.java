@@ -11,6 +11,8 @@ import samuelesimeone.ProgettoU5w3d5.exceptions.BadRequestException;
 import samuelesimeone.ProgettoU5w3d5.exceptions.UnauthorizedExeption;
 import samuelesimeone.ProgettoU5w3d5.security.JWTTools;
 
+import java.time.LocalDate;
+
 @Service
 public class AuthService {
     @Autowired
@@ -31,7 +33,7 @@ public class AuthService {
         if (bcrypt.matches(body.password(), user.getPassword())){
             return jwtTools.createToken(user);
         }else {
-            throw new UnauthorizedExeption("Credenziali sbaglaite");
+            throw new UnauthorizedExeption("Credenziali sbagliate");
         }
     }
 
@@ -39,7 +41,7 @@ public class AuthService {
         userDAO.findByEmail(user.email()).ifPresent(newUser ->{
             throw new BadRequestException("L'email inserita è già in uso");
         });
-        User newUser = new User(user.name(), user.surname(), user.age() ,user.email(), bcrypt.encode(user.password()));
+        User newUser = new User(user.name(), user.surname(), LocalDate.parse(user.age()),user.email(), bcrypt.encode(user.password()));
 
         User savedUser = userDAO.save(newUser);
         return savedUser;

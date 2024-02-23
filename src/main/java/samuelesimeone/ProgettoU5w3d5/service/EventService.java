@@ -15,6 +15,7 @@ import samuelesimeone.ProgettoU5w3d5.entities.User;
 import samuelesimeone.ProgettoU5w3d5.exceptions.BadRequestException;
 import samuelesimeone.ProgettoU5w3d5.exceptions.NotFoundException;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Service
@@ -29,7 +30,7 @@ public class EventService {
     }
 
     public Event save(EventDTO event) {
-        Event newEvent = new Event(event.title(), event.date(), event.description(), event.nMax(), event.location());
+        Event newEvent = new Event(event.title(), LocalDate.parse(event.date()), event.description(), event.nMax(), event.location());
         return newEvent;
     }
 
@@ -40,7 +41,7 @@ public class EventService {
     public Event update(UUID id, EventDTO eventUp) {
         Event found = this.findById(id);
         found.setAvailability(found.getAvailability());
-        found.setDate(eventUp.date());
+        found.setDate(LocalDate.parse(eventUp.date()));
         found.setDescription(eventUp.description());
         found.setTitle(eventUp.title());
         found.setLocation(eventUp.location());
