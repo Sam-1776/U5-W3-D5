@@ -1,0 +1,23 @@
+package samuelesimeone.ProgettoU5w3d5.dto;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
+import java.time.LocalDate;
+
+public record UserDTO(
+        @NotEmpty(message = "Il nome è obbligatorio")
+         String name,
+        @NotEmpty(message = "Il cognome è obbligatorio")
+        String surname,
+        @NotEmpty(message = "L'età è obbligatoria")
+        LocalDate age,
+        @NotEmpty(message = "L'email è obbligatoria")
+        @Email(message = "L'email inserita non è valida")
+        String email,
+        @NotEmpty(message = "La password è obbligatoria")
+        @Size(min = 8, message = "La password deve essere minimo di caratteri")
+        String password
+) {
+}
