@@ -18,7 +18,6 @@ import java.util.UUID;
 @ToString
 @NoArgsConstructor
 public class Event {
-
     @Id
     @GeneratedValue
     private UUID id;
@@ -27,10 +26,11 @@ public class Event {
     private String description;
     private long nMax;
     private String location;
+    @Enumerated(EnumType.STRING)
     private Availability availability;
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "evento")
-//    private List<Partecipazione> partecipaziones;
+    @JsonIgnore
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+    private List<Booking> bookings;
 
 
     public Event(String title, LocalDate date, String description, long nMax, String location) {

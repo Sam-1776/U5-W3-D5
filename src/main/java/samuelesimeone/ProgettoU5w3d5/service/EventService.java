@@ -9,10 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import samuelesimeone.ProgettoU5w3d5.dao.EventDAO;
 import samuelesimeone.ProgettoU5w3d5.dto.EventDTO;
-import samuelesimeone.ProgettoU5w3d5.dto.UserDTO;
 import samuelesimeone.ProgettoU5w3d5.entities.Event;
-import samuelesimeone.ProgettoU5w3d5.entities.User;
-import samuelesimeone.ProgettoU5w3d5.exceptions.BadRequestException;
 import samuelesimeone.ProgettoU5w3d5.exceptions.NotFoundException;
 
 import java.time.LocalDate;
@@ -31,7 +28,7 @@ public class EventService {
 
     public Event save(EventDTO event) {
         Event newEvent = new Event(event.title(), LocalDate.parse(event.date()), event.description(), event.nMax(), event.location());
-        return newEvent;
+        return eventDAO.save(newEvent);
     }
 
     public Event findById(UUID id) {
