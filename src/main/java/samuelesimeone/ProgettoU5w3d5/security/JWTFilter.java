@@ -11,9 +11,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
-import samuelesimeone.teoriau5w3d1.entities.User;
-import samuelesimeone.teoriau5w3d1.exceptions.UnauthorizedExeption;
-import samuelesimeone.teoriau5w3d1.services.UserService;
+import samuelesimeone.ProgettoU5w3d5.entities.User;
+import samuelesimeone.ProgettoU5w3d5.exceptions.UnauthorizedExeption;
+import samuelesimeone.ProgettoU5w3d5.service.UserService;
 
 import java.io.IOException;
 import java.util.UUID;
