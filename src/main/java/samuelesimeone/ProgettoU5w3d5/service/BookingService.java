@@ -10,10 +10,13 @@ import samuelesimeone.ProgettoU5w3d5.entities.Availability;
 import samuelesimeone.ProgettoU5w3d5.entities.Booking;
 import samuelesimeone.ProgettoU5w3d5.entities.Event;
 import samuelesimeone.ProgettoU5w3d5.entities.User;
+import samuelesimeone.ProgettoU5w3d5.exceptions.BadRequestException;
+import samuelesimeone.ProgettoU5w3d5.exceptions.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class BookingService {
@@ -53,5 +56,28 @@ public class BookingService {
         userDAO.save(user);
         eventDAO.save(event);
         return bookingDAO.save(newBooking);
+    }
+
+    public List<Booking> findByUser(UUID id){
+        User found = userService.findById(id);
+        return bookingDAO.findByUser(found);
+    }
+
+    public Booking findById(UUID id) {
+        return bookingDAO.findById(id).orElseThrow(()-> new NotFoundException(id));
+    }
+
+    public void delete(UUID UserID,UUID BookingId) throws NullPointerException {
+        Booking found = this.findById(BookingId);
+        if (UserID.equals(found.getUser().getId())){
+        Event event = found.getEvent();
+        bookingDAO.delete(found);
+        if (event.getAvailability().equals(Availability.UNAVAILABLE) && event.getBookings().size() < event.getNMax()){
+            event.setAvailability(Availability.AVAILABLE);
+            eventDAO.save(event);
+        }
+        }else {
+            throw new NullPointerException("La prenotazione che stai cancellando non è tua");
+        }
     }
 }

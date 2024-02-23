@@ -44,7 +44,7 @@ public class User implements UserDetails {
     private Role role;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Booking> Bookings;
 
 
