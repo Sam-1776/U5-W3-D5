@@ -43,9 +43,9 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "persona")
-//    private List<Partecipazione> partecipaziones;
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Booking> Bookings;
 
 
     public User(String name, String surname, LocalDate age, String email, String password) {
