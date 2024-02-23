@@ -2,10 +2,7 @@ package samuelesimeone.ProgettoU5w3d5.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,6 +15,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
+@Entity
 @Getter
 @Setter
 @ToString
@@ -33,6 +31,8 @@ import java.util.UUID;
         "accountNonExpired",
         "credentialsNonExpired"})
 public class User implements UserDetails {
+    @Id
+    @GeneratedValue
     private UUID id;
     private String name;
     private String surname;
