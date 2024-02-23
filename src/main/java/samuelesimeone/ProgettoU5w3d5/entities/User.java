@@ -53,6 +53,7 @@ public class User implements UserDetails {
         this.age = age;
         this.email = email;
         this.password = password;
+        this.role = Role.UTENTE;
     }
 
     @Override
