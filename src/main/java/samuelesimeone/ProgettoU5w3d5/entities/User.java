@@ -46,6 +46,15 @@ public class User implements UserDetails {
 //    @OneToMany(mappedBy = "persona")
 //    private List<Partecipazione> partecipaziones;
 
+
+    public User(String name, String surname, LocalDate age, String email, String password) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.email = email;
+        this.password = password;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
