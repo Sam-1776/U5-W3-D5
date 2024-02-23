@@ -26,6 +26,12 @@ public class Handler {
         }
     }
 
+    @ExceptionHandler(NullPointerException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorsPayload handleNullPointer(NullPointerException npe){
+        return new ErrorsPayload(npe.getMessage(), LocalDateTime.now());
+    }
+
     @ExceptionHandler(UnauthorizedExeption.class)
     // Con questa annotazione indico che questo metodo gestirà le eccezioni di tipo UnauthorizedException
     @ResponseStatus(HttpStatus.UNAUTHORIZED) // 401

@@ -29,7 +29,7 @@ public class Event {
     @Enumerated(EnumType.STRING)
     private Availability availability;
     @JsonIgnore
-    @OneToMany(mappedBy = "event")
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private List<Booking> bookings;
 
 
