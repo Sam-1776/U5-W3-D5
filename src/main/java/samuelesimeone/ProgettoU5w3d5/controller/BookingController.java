@@ -26,9 +26,9 @@ public class BookingController {
         return this.bookingService.saveBooking(body);
     }
 
-    @GetMapping("/{UserID}")
-    public List<Booking> foundByUser(@PathVariable UUID UserID){
-        return this.bookingService.findByUser(UserID);
+    @GetMapping("/profile")
+    public List<Booking> foundByUser(@AuthenticationPrincipal User currentUser){
+        return this.bookingService.findByUser(currentUser.getId());
     }
 
     @DeleteMapping("/profile/{BookingID}")
