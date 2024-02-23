@@ -35,8 +35,8 @@ public class BookingService {
     @Autowired
     UserDAO userDAO;
 
-    public Booking saveBooking(BookingDTO body) throws Exception{
-        User user = userService.findById(body.user());
+    public Booking saveBooking(UUID userId, BookingDTO body) throws Exception{
+        User user = userService.findById(userId);
         Event event = eventService.findById(body.event());
         Booking newBooking = new Booking(user, event);
         if (event.getBookings().size() == event.getNMax() || event.getAvailability().equals(Availability.UNAVAILABLE)){

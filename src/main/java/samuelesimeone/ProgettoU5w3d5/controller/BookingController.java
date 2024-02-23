@@ -22,8 +22,8 @@ public class BookingController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Booking saveBooking(@RequestBody BookingDTO body) throws Exception {
-        return this.bookingService.saveBooking(body);
+    public Booking saveBooking(@AuthenticationPrincipal User currentUser, @RequestBody BookingDTO body) throws Exception {
+        return this.bookingService.saveBooking(currentUser.getId(), body);
     }
 
     @GetMapping("/profile")
